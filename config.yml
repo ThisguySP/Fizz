@@ -1,21 +1,38 @@
 web_database:
   host: localhost
+  #On what computer is the phpBB database stored?
   port: 3306
+  #Defaults to the default MySQL port.
   user: walrus
+  #Your username to access the database.
   pass: 12345
+  #Your password. Warning: This file will store this password in CLEAR TEXT.
   database: phpbb
+  #What is the phpbb database called?
   table_prefix: phpbb_
+  #What is the phpbb table prefix? (This is text before all phpbb table names)
   minecraft_username_field: mine_user
+  #What is the Minecraft Username field called?
 bukkit_database:
   host: localhost
+  #On what computer is the Bukkit database kept?
   port: 3306
+  #Defaults to the default MySQL port.
   user: steve
+  #Your username to access the database.
   pass: walrus
+  #Your password. Warning: This file will store this password in CLEAR TEXT.
   database: bukkit
+  #What is the bukkit database called?
   translation_table: fizz
+  #What is the table that translates group ID to plugin group name?
 permissions:
   plugin: bPermissions
+  #Currently does nothing.
   default_group: default
+  #What is the name of the group to assign if all else fails?
 messages:
   login: true
+  #Tell the player that their group was set?
   login_message: &aYour group was set to %group%.
+  #What do we tell them? & will be replaced with § and %group% with the group.
