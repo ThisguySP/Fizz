@@ -70,6 +70,7 @@ public final class Fizz extends JavaPlugin implements Listener {
 				this.getConfig().getString("bukkit_database.user"), this.getConfig().getString("bukkit_database.pass")
 			);
 			getLogger().info("Connected to Bukkit database successfully.");
+			bukkitdb.createStatement().executeQuery("CREATE TABLE IF NOT EXISTS `" + this.getConfig().getString("bukkit_database.database") + "`.`" + translationTable + "`");
 		} catch (SQLException e) {
 			getLogger().severe("Could not connect to the bukkit MySQL database.");
 			System.err.println(e);
@@ -143,7 +144,7 @@ public final class Fizz extends JavaPlugin implements Listener {
 		String[] groups = {group};
 		PermissionsEx.getUser(event.getPlayer()).setGroups(groups);
 		if (doLoginMessage) {
-			event.getPlayer().sendRawMessage(loginMessage);
+			event.getPlayer().sendRawMessage(loginMessage.replace("&", "§").replace("%group%", group));
 		}
 	}
 }
