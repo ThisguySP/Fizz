@@ -1,0 +1,21 @@
+web_database:
+  host: localhost
+  port: 3306
+  user: walrus
+  pass: 12345
+  database: phpbb
+  table_prefix: phpbb_
+  minecraft_username_field: mine_user
+bukkit_database:
+  host: localhost
+  port: 3306
+  user: steve
+  pass: walrus
+  database: bukkit
+  translation_table: fizz
+permissions:
+  plugin: bPermissions
+  default_group: default
+messages:
+  login: true
+  login_message: &aYour group was set to %group%.
