@@ -11,4 +11,4 @@ The long version of that is a story best told in steps:
 
 Easy as 1, 2, 3, eh?
 
-For configuration help, visit the comments left for you in config.yml. I promise they're easier to understand than this plugin's function!
+For configuration help, visit the comments left for you in config.yml. I promise they're easier to understand than this readme!
