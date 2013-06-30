@@ -18,7 +18,6 @@ import java.sql.ResultSet;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-//import ru.tehkode.permissions.PermissionUser;
 import ru.tehkode.permissions.bukkit.PermissionsEx;
 
 public final class Fizz extends JavaPlugin implements Listener {
@@ -85,7 +84,7 @@ public final class Fizz extends JavaPlugin implements Listener {
 		defaultGroup = this.getConfig().getString("permissions.default_group");
 		
 		doLoginMessage = this.getConfig().getBoolean("messages.login");
-		loginMessage = this.getConfig().getString("messages.login_message");
+		loginMessage = this.getConfig().getString("messages.login_message").replace("&", "§");
 	}
 
 	public void onDisable() {
@@ -144,7 +143,7 @@ public final class Fizz extends JavaPlugin implements Listener {
 		String[] groups = {group};
 		PermissionsEx.getUser(event.getPlayer()).setGroups(groups);
 		if (doLoginMessage) {
-			event.getPlayer().sendRawMessage(loginMessage.replace("&", "§").replace("%group%", group));
+			event.getPlayer().sendRawMessage(loginMessage.replace("%group%", group));
 		}
 	}
 }
