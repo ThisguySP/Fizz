@@ -93,11 +93,11 @@ public final class Fizz extends JavaPlugin implements Listener {
 		try {
 			webdb.close();
 			bukkitdb.close();
+			getLogger().info("Closed connections to all databases.");
 		} catch (SQLException e) {
 			System.err.println(e);
 			getLogger().severe("Couldn't close one or more database connections!");
 		}
-		getLogger().info("Closed connections to all databases.");
 	}
 	
 	@EventHandler
