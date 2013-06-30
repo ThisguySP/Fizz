@@ -44,6 +44,18 @@ public final class Fizz extends JavaPlugin implements Listener {
 		}
 		getServer().getPluginManager().registerEvents(this, this);
 		getLogger().info("Registered player login listener.");
+		
+		tablePrefix = this.getConfig().getString("web_database.table_prefix");
+		mineUser = this.getConfig().getString("web_database.minecraft_username_field");
+		
+		translationTable = this.getConfig().getString("bukkit_database.translation_table");
+		
+		permissionsPlugin = this.getConfig().getString("permissions.plugin");
+		defaultGroup = this.getConfig().getString("permissions.default_group");
+		
+		doLoginMessage = this.getConfig().getBoolean("messages.login");
+		loginMessage = this.getConfig().getString("messages.login_message").replace("&", "§");
+		
 		getLogger().info("Connecting to MySQL database...");
 		try {
 			webdb = DriverManager.getConnection(
@@ -69,22 +81,11 @@ public final class Fizz extends JavaPlugin implements Listener {
 				this.getConfig().getString("bukkit_database.user"), this.getConfig().getString("bukkit_database.pass")
 			);
 			getLogger().info("Connected to Bukkit database successfully.");
-			bukkitdb.createStatement().executeQuery("CREATE TABLE IF NOT EXISTS `" + this.getConfig().getString("bukkit_database.database") + "`.`" + translationTable + "`");
+			bukkitdb.createStatement().executeUpdate("CREATE TABLE IF NOT EXISTS `" + this.getConfig().getString("bukkit_database.database") + "`.`" + translationTable + "` (`group_id` int(16) NOT NULL, `group_name` varchar(16) NOT NULL), UNIQUE KEY `group_id` (`group_id`) ENGINE=InnoDB DEFAULT CHARSET=utf8");
 		} catch (SQLException e) {
 			getLogger().severe("Could not connect to the bukkit MySQL database.");
 			System.err.println(e);
 		}
-		
-		tablePrefix = this.getConfig().getString("web_database.table_prefix");
-		mineUser = this.getConfig().getString("web_database.minecraft_username_field");
-		
-		translationTable = this.getConfig().getString("bukkit_database.translation_table");
-		
-		permissionsPlugin = this.getConfig().getString("permissions.plugin");
-		defaultGroup = this.getConfig().getString("permissions.default_group");
-		
-		doLoginMessage = this.getConfig().getBoolean("messages.login");
-		loginMessage = this.getConfig().getString("messages.login_message").replace("&", "§");
 	}
 
 	public void onDisable() {
